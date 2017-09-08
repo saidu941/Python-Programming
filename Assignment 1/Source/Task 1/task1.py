@@ -1,33 +1,21 @@
-file = open('The Beast.txt', 'r')
-book = file.read()
-
-print(book)
-
-def tokenize():
-    if book is not None:
-        words = book.lower().split()
-        return words
-    else:
-        return None
-
-
-def count_word(tokens, token):
+fo = open('paragraphs.txt', 'r')
+string = fo.read()
+list = string.split()
+print(list)
+ln = len(list)
+for i in range(ln):
+    list[i] = list[i].strip(',')
+    list[i] = list[i].strip('.')
+for i in range(ln):
     count = 0
-    for element in tokens:
-        # Remove Punctuation
-        word = element.replace(",", "")
-        word = word.replace(".", "")
-
-        # Found Word
-        if word == token:
-            count += 1
-    return count
-
-
-# Tokenize the Book
-words = tokenize()
-
-# Get Word Count
-word = 'the'
-frequency = count_word(words, word)
-print('Word: [' + word + '] Frequency: ' + str(frequency))
+    for j in range(ln):
+        if list[i] == list[j]:
+            count = int(count+1)
+        """seen = set()
+        for item in list:
+            if item not in seen:
+                f = open('frequency', 'a+')
+                f.write("%s %d \n" %(list[i],count))"""
+    print(list[i], count)
+    f = open('task1-output', 'a+')
+    f.write("%s %d \n" % (list[i], count))
